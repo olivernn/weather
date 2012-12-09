@@ -85,6 +85,8 @@ GEM
     rake (10.0.2)
     rdoc (3.12)
       json (~> 1.4)
+    requirejs-rails (0.9.0)
+      railties (>= 3.1.1, < 3.3)
     rspec-core (2.12.0)
     rspec-expectations (2.12.0)
       diff-lcs (~> 1.1.3)
@@ -128,6 +130,7 @@ DEPENDENCIES
   pg
   psych
   rails (= 3.2.9)
+  requirejs-rails
   rspec-rails
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
