@@ -1,0 +1,70 @@
+{
+  "SiteRep": {
+    "DV": {
+      "Location": [{
+        "Period": [
+          {
+            "Rep": {
+              "$": "1380",
+              "W": "7",
+              "V": "50000",
+              "T": "0.8",
+              "S": "7",
+              "P": "1016",
+              "D": "SW"
+            },
+            "value": "2012-12-07Z",
+            "type": "Day"
+          }
+        ],
+        "continent": "EUROPE",
+        "country": "SCOTLAND",
+        "name": "BALTASOUND",
+        "lon": "-0.854",
+        "lat": "60.749",
+        "i": "3002"
+      }],
+      "type": "Obs",
+      "dataDate": "2012-12-08T23:00:00Z"
+    },
+    "Wx": {
+      "Param": [
+        {
+          "$": "Wind Gust",
+          "units": "mph",
+          "name": "G"
+        },
+        {
+          "$": "Temperature",
+          "units": "C",
+          "name": "T"
+        },
+        {
+          "$": "Visibility",
+          "units": "m",
+          "name": "V"
+        },
+        {
+          "$": "Wind Direction",
+          "units": "compass",
+          "name": "D"
+        },
+        {
+          "$": "Wind Speed",
+          "units": "mph",
+          "name": "S"
+        },
+        {
+          "$": "Weather Type",
+          "units": "",
+          "name": "W"
+        },
+        {
+          "$": "Pressure",
+          "units": "hpa",
+          "name": "P"
+        }
+      ]
+    }
+  }
+}
