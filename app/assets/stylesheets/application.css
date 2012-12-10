@@ -10,5 +10,9 @@
  *
  *= require_self
  *= require_tree .
- *= require polymaps.css
  */
+
+#map {
+  width: 960px;
+  height: 960px;
+}

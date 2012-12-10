@@ -1,25 +1,17 @@
-define(['ctrl', 'polymaps', 'd3'], function (ctrl, polymaps, d3) {
+define(['ctrl', 'gmaps', 'voronoi_map_layer'], function (ctrl, gmaps, VoronoiMapLayer) {
   return ctrl('mapController', function () {
     this.afterInitialize(function () {
-      this.map = polymaps.map()
-        .container(d3.select('#map').append('svg:svg').node())
-        .zoom(8)
-        .add(polymaps.interact())
+      this.map = new gmaps.Map(this.elem.get(0), {
+        mapTypeId: gmaps.MapTypeId.ROADMAP,
+        center: new gmaps.LatLng(51.5171, 0.1062),
+        zoom: 8
+      })
 
-      this.map.add(polymaps.image().url(this.imageTilesUrl()))
+      var voronoiMapOverlay = new VoronoiMapLayer ({
+        locations: this.model.map(function (l) { return l.latlng() })
+      })
 
-      this.addControls()
-    })
-
-    this.include({
-      imageTilesUrl: function () {
-        var mapsUrl = 'http://{S}tile.cloudmade.com/973afee76f35426db974aea3c5e47553/998/256/{Z}/{X}/{Y}.png'
-        return polymaps.url(mapsUrl).hosts(['a.', 'b.', 'c.', ''])
-      },
-
-      addControls: function () {
-        this.map.add(polymaps.compass().pan('none'))
-      }
+      voronoiMapOverlay.setMap(this.map)
     })
   })
 })
