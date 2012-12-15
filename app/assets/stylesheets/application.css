@@ -12,7 +12,20 @@
  *= require_tree .
  */
 
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 #map {
-  width: 960px;
-  height: 960px;
+  height: 100%;
+}
+
+.voronoi-map-layer {
+  position: absolute;
 }

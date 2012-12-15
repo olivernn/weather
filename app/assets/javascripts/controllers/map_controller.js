@@ -1,4 +1,4 @@
-define(['ctrl', 'gmaps', 'voronoi_map_layer'], function (ctrl, gmaps, VoronoiMapLayer) {
+define(['ctrl', 'gmaps', 'layers/voronoi_map_layer'], function (ctrl, gmaps, VoronoiMapLayer) {
   return ctrl('mapController', function () {
     this.afterInitialize(function () {
       this.map = new gmaps.Map(this.elem.get(0), {

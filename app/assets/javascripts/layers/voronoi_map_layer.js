@@ -7,14 +7,17 @@ define(['d3', 'gmaps'], function (d3, gmaps) {
   VoronoiMapLayer.prototype = new gmaps.OverlayView()
 
   VoronoiMapLayer.prototype.onAdd = function () {
-    this.layer = d3.select(this.getPanes().overlayLayer).append('div').attr('class', 'voronoi-map-layer')
+    this.layer = d3.select(this.getPanes().overlayLayer).append('div')
+                 .attr('class', 'voronoi-map-layer')
 
     this.svg = this.layer.append('svg')
-                .attr('width', this.width)
-                .attr('height', this.height)
+                 .attr('width', this.width)
+                 .attr('height', this.height)
   }
 
   VoronoiMapLayer.prototype.draw = function () {
+    this.positionOverlay()
+
     var voronoi = d3.geom.voronoi(this.locations)
 
     var edges = this.svg.selectAll('path')
@@ -27,6 +30,20 @@ define(['d3', 'gmaps'], function (d3, gmaps) {
                       .attr('d', this.generatePath.bind(this))
                       .attr('fill', 'none')
                       .attr('stroke', 'black')
+  }
+
+  VoronoiMapLayer.prototype.positionOverlay = function () {
+    debugger
+    var overlayProjection = this.getProjection(),
+        sw = overlayProjection.fromLatLngToDivPixel(this.map.getBounds().getSouthWest()),
+        ne = overlayProjection.fromLatLngToDivPixel(this.map.getBounds().getNorthEast())
+
+    this.layer.style({
+      left: sw.x + 'px',
+      top: ne.y + 'px',
+      width: (ne.x - sw.x) + 'px',
+      height: (sw.y - ne.y) + 'px'
+    })
   }
 
   VoronoiMapLayer.prototype.generatePath = function (d) {
