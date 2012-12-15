@@ -12,8 +12,8 @@ define(['model', 'requests/all_locations'], function (model, allLocations) {
         })
     }
 
-    this.prototype.latlng = function () {
-      return [this.get('lat'), this.get('lng')]
+    this.prototype.lnglat = function () {
+      return [this.get('lng'), this.get('lat')]
     }
   })
 })

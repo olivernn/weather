@@ -26,6 +26,16 @@ body {
   height: 100%;
 }
 
+#uk-map {
+  fill: #ccc;
+  stroke: #aaa;
+}
+
+path.cell {
+  fill: none;
+  stroke: brown;
+}
+
 .voronoi-map-layer {
   position: absolute;
 }

@@ -1,17 +1,19 @@
-define(['ctrl', 'gmaps', 'layers/voronoi_map_layer'], function (ctrl, gmaps, VoronoiMapLayer) {
+define(['ctrl', 'd3', 'projection'], function (ctrl, d3, projection) {
   return ctrl('mapController', function () {
     this.afterInitialize(function () {
-      this.map = new gmaps.Map(this.elem.get(0), {
-        mapTypeId: gmaps.MapTypeId.ROADMAP,
-        center: new gmaps.LatLng(51.5171, 0.1062),
-        zoom: 8
-      })
+      this.map = this.options.svg.append('svg:g').attr('id', 'uk-map')
+      this.drawMap()
+    })
 
-      var voronoiMapOverlay = new VoronoiMapLayer ({
-        locations: this.model.map(function (l) { return l.latlng() })
-      })
-
-      voronoiMapOverlay.setMap(this.map)
+    this.include({
+      drawMap: function () {
+        this.map
+          .selectAll('path')
+          .data(this.model.features)
+          .enter()
+            .append('svg:path')
+            .attr('d', d3.geo.path().projection(projection))
+      }
     })
   })
 })
