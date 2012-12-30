@@ -3,4 +3,8 @@ class Observation < ActiveRecord::Base
    :wind_direction, :wind_speed, :weather_type, :pressure
 
   belongs_to :location
+
+  scope :on_date, lambda { |date|
+    where('date >= ? AND date < ?', date.beginning_of_day, date.end_of_day)
+  }
 end

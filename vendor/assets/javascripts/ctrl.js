@@ -18,6 +18,8 @@ define(['jquery'], function ($) {
     autoBind: function () {
       var self = this
 
+      if (!this.elem.find) return
+
       var dataBind = function (property) {
         return function () {
           var elem = $(this),

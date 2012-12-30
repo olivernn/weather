@@ -4,6 +4,7 @@ gem 'rails', '3.2.9'
 gem 'psych'
 gem 'pg'
 gem 'requirejs-rails'
+gem 'jbuilder'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
