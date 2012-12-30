@@ -22,6 +22,26 @@ body {
   padding: 0;
 }
 
+.clock.is-stopped {
+  .start {
+    display: inline;
+  }
+
+  .stop {
+    display: none;
+  }
+}
+
+.clock.is-started {
+  .start {
+    display: none;
+  }
+
+  .stop {
+    display: inline;
+  }
+}
+
 #map {
   height: 100%;
 }

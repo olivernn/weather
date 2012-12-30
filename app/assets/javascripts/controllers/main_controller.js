@@ -1,4 +1,13 @@
-define(['ctrl', 'd3', 'controllers/map_controller', 'controllers/locations_controller', 'requests/geo', 'models/location', 'models/clock'], function (ctrl, d3, MapController, LocationsController, geoLocations, Location, clock) {
+define([
+  'ctrl',
+  'd3',
+  'controllers/map_controller',
+  'controllers/locations_controller',
+  'controllers/clock_controller',
+  'requests/geo',
+  'models/location',
+  'models/clock'
+], function (ctrl, d3, MapController, LocationsController, ClockController, geoLocations, Location, clock) {
   return ctrl('mainController', function () {
     this.afterInitialize(function () {
       this.svg = d3.select('#map').insert('svg:svg')
@@ -7,8 +16,8 @@ define(['ctrl', 'd3', 'controllers/map_controller', 'controllers/locations_contr
 
       geoLocations().then(this.initMapController.bind(this))
       Location.load().then(this.initLocationsController.bind(this))
-      //clock.start()
-      window.clock = clock
+
+      this.initClockController()
     })
 
     this.include({
@@ -25,6 +34,13 @@ define(['ctrl', 'd3', 'controllers/map_controller', 'controllers/locations_contr
           elem: this.elem.find('#map'),
           model: Location.collection,
           svg: this.svg
+        })
+      },
+
+      initClockController: function () {
+        this.initChildView(ClockController, {
+          elem: this.elem.find('.clock'),
+          model: clock
         })
       }
     })

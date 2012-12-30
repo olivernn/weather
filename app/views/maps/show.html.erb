@@ -1,1 +1,19 @@
+<div class="clock">
+  <a class="start">Start</a>
+  <a class="stop">Stop</a>
+
+  <div class="date">
+    <span data-bind-text="year"></span>
+    <span data-bind-text="month"></span>
+    <span data-bind-text="day"></span>
+  </div>
+
+  <div class="time">
+    <span data-bind-text="hours"></span>:
+    <span>00</span>
+  </div>
+
+  <input class="tick-rate" type="range" name="tick_rate" data-bind-value="tick_rate" min="200" max="1200"></input>
+</div>
+
 <div id="map"></div>

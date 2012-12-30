@@ -1,5 +1,17 @@
 define(['model'], function (model) {
   var Clock = model('clock', function () {
+
+    var currentDate = function () {
+      var date = new Date
+
+      date.setHours(0)
+      date.setMinutes(0)
+      date.setSeconds(0)
+      date.setMilliseconds(0)
+
+      return date
+    }
+
     this.prototype.initialize = function () {
       this.set('tick_rate', 200)
       this.set('interval', null)
@@ -16,17 +28,31 @@ define(['model'], function (model) {
 
     this.prototype.start = function () {
       this.interval = setInterval(this.incrementDate.bind(this), this.get('tick_rate'))
+      this.emit('started')
     }
 
     this.prototype.stop = function () {
       clearInterval(this.interval)
+      this.emit('stopped')
+    }
+
+    this.prototype.setTickRate = function (rate) {
+      this.stop()
+      this.set('tick_rate', rate)
+      this.start()
     }
 
     this.prototype.incrementDate = function () {
       var date = this.get('date')
       date.setHours(date.getHours() + 1)
       this.set('date', date)
+      this.set('year', date.getFullYear())
+      this.set('month', date.getMonth())
+      this.set('day', date.getDate())
+      this.set('hours', date.getHours())
       this.emit('tick', date)
+
+      if (date >= currentDate()) this.stop()
     }
   })
 

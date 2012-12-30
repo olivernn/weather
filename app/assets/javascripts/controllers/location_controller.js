@@ -1,4 +1,4 @@
-define(['ctrl', 'd3'], function (ctrl, d3) {
+define(['ctrl', 'd3', 'models/clock'], function (ctrl, d3, clock) {
   return ctrl('locationController', function () {
 
     this.modelEvent('change:current_observation', 'updateColor')
@@ -13,7 +13,7 @@ define(['ctrl', 'd3'], function (ctrl, d3) {
       updateColor: function (_, _, obs) {
         var color = this.colorScale(obs.get('temperature'))
         this.elem.select('path').transition()
-          .duration(200)
+          .duration(clock.get('tick_rate'))
           .attr('fill', color)
       }
     })
