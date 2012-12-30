@@ -20,7 +20,7 @@ define(['model', 'requests/all_locations', 'models/observation', 'models/clock']
 
     this.prototype.initialize = function () {
       this.set('observation_index', 0)
-      clock.onTick(this.updateCurrentObservation, this)
+      clock.on('tick', this.updateCurrentObservation, this)
     }
 
     this.prototype.lnglat = function () {

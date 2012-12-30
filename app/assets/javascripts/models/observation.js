@@ -40,8 +40,8 @@ define(['model', 'requests/observations_for_date', 'models/clock'], function (mo
       })
     }
 
-    clock.onTick(this.findByDateAndSelect, this)
-    clock.onTick(this.loadNext, this)
+    clock.on('tick', this.findByDateAndSelect, this)
+    clock.on('tick', this.loadNext, this)
 
     this.prototype.initialize = function () {
       this.set('date', new Date(Date.parse(this.get('date'))))
