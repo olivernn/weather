@@ -46,10 +46,7 @@ define(['model'], function (model) {
       var date = this.get('date')
       date.setHours(date.getHours() + 1)
       this.set('date', date)
-      this.set('year', date.getFullYear())
-      this.set('month', date.getMonth())
-      this.set('day', date.getDate())
-      this.set('hours', date.getHours())
+
       this.emit('tick', date)
 
       if (date >= currentDate()) this.stop()

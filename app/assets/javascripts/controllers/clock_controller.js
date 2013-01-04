@@ -1,4 +1,4 @@
-define(['ctrl'], function (ctrl) {
+define(['ctrl', 'display_date_time'], function (ctrl) {
   return ctrl('clockController', function () {
     this
       .domEvent('click', '.start', '!startClock')
@@ -8,6 +8,7 @@ define(['ctrl'], function (ctrl) {
     this
       .modelEvent('stopped', 'displayStartButton')
       .modelEvent('started', 'displayStopButton')
+      .modelEvent('tick', 'updateClockDisplay')
 
     this.include({
       startClock: function () {
@@ -20,6 +21,10 @@ define(['ctrl'], function (ctrl) {
 
       setTickRate: function () {
         this.model.setTickRate(this.elem.find('.tick-rate').val())
+      },
+
+      updateClockDisplay: function (date) {
+        this.elem.find('.datetime').displayDateTime(date)
       },
 
       displayStartButton: function () {

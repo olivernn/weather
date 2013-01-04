@@ -2,16 +2,18 @@
   <a class="start">Start</a>
   <a class="stop">Stop</a>
 
-  <div class="date">
-    <span data-bind-text="year"></span>
-    <span data-bind-text="month"></span>
-    <span data-bind-text="day"></span>
-  </div>
+  <article class="datetime">
+    <section class="date">
+      <span data-date-section="year"></span>
+      <span data-date-section="month"></span>
+      <span data-date-section="day"></span>
+    </section>
 
-  <div class="time">
-    <span data-bind-text="hours"></span>:
-    <span>00</span>
-  </div>
+    <section class="time">
+      <span data-date-section="hours"></span>:
+      <span>00</span>
+    </section>
+  </article>
 
   <input class="tick-rate" type="range" name="tick_rate" data-bind-value="tick_rate" min="200" max="1200"></input>
 </div>
