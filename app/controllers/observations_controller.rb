@@ -2,7 +2,7 @@ class ObservationsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Observation.on_date(date)
+    respond_with @observations = Observation.on_date(date)
   end
 
   private

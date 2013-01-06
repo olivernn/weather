@@ -1,4 +1,8 @@
-define(['model', 'requests/observations_for_date', 'models/clock'], function (model, observationsForDate, clock) {
+define([
+  'model',
+  'requests/observations_for_date',
+  'models/clock'
+], function (model, observationsForDate, clock) {
   return model('observations', function () {
 
     var defaultDate = function () {
@@ -17,7 +21,7 @@ define(['model', 'requests/observations_for_date', 'models/clock'], function (mo
 
       return observationsForDate(date)
         .then(function (data) {
-          data.forEach(initAndAddToCollection)
+          data.forEachWait(initAndAddToCollection)
         })
     }
 
