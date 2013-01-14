@@ -1,21 +1,26 @@
-<div class="clock">
-  <a class="start">Start</a>
-  <a class="stop">Stop</a>
+<article class="left-bar">
+  <div class="clock">
+    <a class="start">Start</a>
+    <a class="stop">Stop</a>
 
-  <article class="datetime">
-    <section class="date">
-      <span data-date-section="year"></span>
-      <span data-date-section="month"></span>
-      <span data-date-section="day"></span>
-    </section>
+    <article class="datetime">
+      <section class="date">
+        <span data-date-section="year"></span>
+        <span data-date-section="month"></span>
+        <span data-date-section="day"></span>
+      </section>
 
-    <section class="time">
-      <span data-date-section="hours"></span>:
-      <span>00</span>
-    </section>
-  </article>
+      <section class="time">
+        <span data-date-section="hours"></span>
+        <span>00</span>
+      </section>
+    </article>
 
-  <input class="tick-rate" type="range" name="tick_rate" data-bind-value="tick_rate" min="200" max="1200"></input>
-</div>
+    <input class="tick-rate" type="range" name="tick_rate" data-bind-value="tick_rate" min="200" max="1200"></input>
+  </div>
+</article>
 
-<div id="map"></div>
+<article class="map"></article>
+
+<article class="right-bar"></article>
+

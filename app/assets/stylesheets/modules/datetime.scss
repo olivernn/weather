@@ -1,0 +1,26 @@
+@import 'colors';
+
+.datetime {
+  .date {
+    font-size: 2em;
+    span {
+      display: inline-block;
+      padding: 0 6px;
+    }
+  }
+
+  .time {
+    font-size: 5em;
+
+    span:first-child:after {
+      content: ':'
+    }
+
+    span {
+      text-shadow: 2px 0 0 #000;
+      display: inline-block;
+      width: 88px;
+      padding: 0 6px;
+    }
+  }
+}

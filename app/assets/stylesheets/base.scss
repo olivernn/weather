@@ -1,0 +1,10 @@
+@import 'colors';
+
+body {
+  font-size: 1.2em;
+  font-family: 'Helvetica';
+  color: $main-copy-color;
+  background-color: $background-color;
+  margin: 0;
+  padding: 0;
+}

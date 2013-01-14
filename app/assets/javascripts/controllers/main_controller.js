@@ -10,9 +10,9 @@ define([
 ], function (ctrl, d3, MapController, LocationsController, ClockController, geoLocations, Location, clock) {
   return ctrl('mainController', function () {
     this.afterInitialize(function () {
-      this.svg = d3.select('#map').insert('svg:svg')
-                   .attr('width', 1280)
-                   .attr('height', 800)
+      this.svg = d3.select('.map').insert('svg:svg')
+                   .attr('width', 800)
+                   .attr('height', 600)
 
       geoLocations().then(this.initMapController.bind(this))
       Location.load().then(this.initLocationsController.bind(this))
@@ -23,7 +23,7 @@ define([
     this.include({
       initMapController: function (data) {
         this.initChildView(MapController, {
-          elem: this.elem.find('#map'),
+          elem: this.elem.find('.map'),
           model: data,
           svg: this.svg
         })

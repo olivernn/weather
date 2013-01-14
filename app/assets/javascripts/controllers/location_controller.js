@@ -3,6 +3,8 @@ define(['ctrl', 'd3', 'models/clock'], function (ctrl, d3, clock) {
 
     this.modelEvent('change:current_observation', 'updateColor')
 
+    this.domEvent('click', 'logModel')
+
     this.afterInitialize(function () {
       this.colorScale = d3.scale.linear()
                           .domain([-15,-3,2,10,15])
@@ -15,6 +17,10 @@ define(['ctrl', 'd3', 'models/clock'], function (ctrl, d3, clock) {
         this.elem.select('path').transition()
           .duration(clock.get('tick_rate'))
           .attr('fill', color)
+      },
+
+      logModel: function () {
+        console.log(this.model.get('name'))
       }
     })
   })

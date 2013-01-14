@@ -1,0 +1,21 @@
+.left-bar {
+  padding: 8px;
+  width: 240px;
+}
+
+.map {
+  width: 800px;
+}
+
+.right-bar {
+  width: 240px;
+}
+
+.wrapper {
+  width: 1280px;
+}
+
+.left-bar, .right-bar, .map {
+  float: left;
+  height: 600px;
+}

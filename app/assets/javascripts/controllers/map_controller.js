@@ -1,7 +1,7 @@
 define(['ctrl', 'd3', 'projection'], function (ctrl, d3, projection) {
   return ctrl('mapController', function () {
     this.afterInitialize(function () {
-      this.map = this.options.svg.append('svg:g').attr('id', 'uk-map')
+      this.map = this.options.svg.append('svg:g').attr('class', 'uk-path')
       this.drawMap()
     })
 
