@@ -1,4 +1,4 @@
-define(['ctrl', 'd3', 'projection'], function (ctrl, d3, projection) {
+define(['ctrl', 'd3', 'projection', 'topojson'], function (ctrl, d3, projection, topojson) {
   return ctrl('mapController', function () {
     this.afterInitialize(function () {
       this.map = this.options.svg.append('svg:g').attr('class', 'uk-path')
@@ -8,10 +8,8 @@ define(['ctrl', 'd3', 'projection'], function (ctrl, d3, projection) {
     this.include({
       drawMap: function () {
         this.map
-          .selectAll('path')
-          .data(this.model.features)
-          .enter()
-            .append('svg:path')
+          .append('path')
+            .datum(topojson.object(this.model, this.model.objects.subunits))
             .attr('d', d3.geo.path().projection(projection))
       }
     })
