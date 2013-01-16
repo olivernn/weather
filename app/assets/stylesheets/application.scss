@@ -35,14 +35,18 @@
 
 .uk-path {
   fill: #ccc;
-  stroke: #aaa;
+  stroke: #333;
 }
 
 path.cell {
   fill-opacity: 0.7;
-  stroke: white;
-  transition: fill 0.5;
-  -webkit-transition: fill 0.5;
+  stroke: none;
+  stroke-width: 0;
+}
+
+path.cell:hover {
+  stroke: whitesmoke;
+  stroke-width: 1px;
 }
 
 .voronoi-map-layer {

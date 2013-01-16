@@ -4,10 +4,11 @@ define([
   'controllers/map_controller',
   'controllers/locations_controller',
   'controllers/clock_controller',
+  'controllers/location_detail_controller',
   'requests/geo',
   'models/location',
   'models/clock'
-], function (ctrl, d3, MapController, LocationsController, ClockController, geoLocations, Location, clock) {
+], function (ctrl, d3, MapController, LocationsController, ClockController, LocationDetailController, geoLocations, Location, clock) {
   return ctrl('mainController', function () {
     this.afterInitialize(function () {
       this.svg = d3.select('.map').insert('svg:svg')
@@ -16,6 +17,8 @@ define([
 
       geoLocations().then(this.initMapController.bind(this))
       Location.load().then(this.initLocationsController.bind(this))
+
+      Location.anyInstance.on('selected', this.renderLocationDetailController, this)
 
       this.initClockController()
     })
@@ -42,6 +45,15 @@ define([
           elem: this.elem.find('.clock'),
           model: clock
         })
+      },
+
+      renderLocationDetailController: function (location) {
+        var locationDetailController = this.initChildView(LocationDetailController, {
+          elem: $('<div></div>').appendTo(this.elem.find('.location-detail-controller-container')),
+          model: location
+        })
+
+        locationDetailController.render()
       }
     })
   })

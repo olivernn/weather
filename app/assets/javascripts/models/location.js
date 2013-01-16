@@ -38,5 +38,16 @@ define(['model', 'requests/all_locations', 'models/observation', 'models/clock']
 
       if (observation) this.set('current_observation', observation)
     }
+
+    this.prototype.select = function () {
+      this.constructor.collection.forEach(function (location) { location.deselect() })
+      this.set('selected', true)
+      this.emit('selected', this)
+    }
+
+    this.prototype.deselect = function () {
+      this.set('selected', false)
+      this.emit('deselected', this)
+    }
   })
 })

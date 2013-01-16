@@ -1,0 +1,21 @@
+@import 'mixins';
+@import 'colors';
+
+.location-detail {
+  header {
+    @include panel;
+  }
+
+  .temperature {
+    @include transition-duration(0.2s);
+    @include panel;
+    font-size: 6em;
+    text-align: center;
+    color: #000;
+  }
+
+  .temperature p {
+    text-shadow: 2px 0 0 #222;
+    margin: 0;
+  }
+}

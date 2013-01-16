@@ -3,3 +3,12 @@
   border-top: 1px solid #444;
   padding: 0 6px;
 }
+
+@mixin transition-duration($duration) {
+  -webkit-transition-duration: $duration;
+  -mox-transition-duration: $duration;
+  -ie-transition-duration: $duration;
+  -o-transition-duration: $duration;
+
+  transition-duration: $duration;
+}
