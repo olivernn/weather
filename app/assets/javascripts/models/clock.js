@@ -1,4 +1,4 @@
-define(['model'], function (model) {
+define(['model', 'core_extensions/number'], function (model) {
   var Clock = model('clock', function () {
 
     var currentDate = function () {
@@ -16,7 +16,7 @@ define(['model'], function (model) {
       this.set('tick_rate', 200)
       this.set('interval', null)
 
-      var date = new Date (2012, 11, 9)
+      var date = (14).daysAgo()
 
       date.setHours(0)
       date.setMinutes(0)

@@ -1,41 +1,33 @@
 define([
   'model',
   'requests/observations_for_date',
-  'models/clock'
+  'models/clock',
+  'core_extensions/date',
+  'core_extensions/number'
 ], function (model, observationsForDate, clock) {
   return model('observations', function () {
+    var self = this
 
-    var defaultDate = function () {
-      var d = new Date (2012, 11, 9)
-      //d.setDate(d.getDate() - 30)
-      return d
+    var initAndAddToCollection = function (attrs) {
+      self.collection.add(new self (attrs))
     }
 
     this.load = function (date) {
-      var ctor = this,
-          date = date || defaultDate()
-
-      var initAndAddToCollection = function (attrs) {
-        ctor.collection.add(new ctor (attrs))
-      }
+      var date = date || (14).daysAgo()
 
       return observationsForDate(date)
         .then(function (data) {
           data.forEachWait(initAndAddToCollection)
         })
+        .then(this.loadNext.bind(this, date))
     }
 
-    this.loadNext = function (d) {
-      if (d.getHours() !== 0) return
+    this.loadNext = function (date) {
+      var nextDay = date.nextDay()
 
-      console.log('loading observations for', d)
+      if (nextDay.isToday()) return
 
-      var date = new Date
-      date.setFullYear(d.getFullYear())
-      date.setMonth(d.getMonth())
-      date.setDate(d.getDate() + 1)
-
-      this.load(date)
+      setTimeout(this.load.bind(this, nextDay), 2000)
     }
 
     this.findByDateAndSelect = function (date) {
@@ -45,7 +37,6 @@ define([
     }
 
     clock.on('tick', this.findByDateAndSelect, this)
-    clock.on('tick', this.loadNext, this)
 
     this.prototype.initialize = function () {
       this.set('date', new Date(Date.parse(this.get('date'))))
