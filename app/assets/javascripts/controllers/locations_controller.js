@@ -4,6 +4,7 @@ define(['ctrl', 'd3', 'projection', 'controllers/location_controller'], function
       this.cells = this.options.svg
                      .append('svg:g')
                      .attr('id', 'cells')
+                     .attr('clip-path', 'url(#uk-outline)')
 
       this.drawLocations()
     })
