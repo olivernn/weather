@@ -4,11 +4,26 @@
   padding: 0 6px;
 }
 
+@mixin inset-section {
+  border-bottom: 1px solid #444;
+  border-right: 1px solid #444;
+  border-top: 1px solid #222;
+  border-left: 1px solid #222;
+}
+
 @mixin transition-duration($duration) {
   -webkit-transition-duration: $duration;
-  -mox-transition-duration: $duration;
+  -webkit-transition-property: all;
+
+  -moz-transition-duration: $duration;
+  -moz-transition-property: all;
+
   -ie-transition-duration: $duration;
+  -ie-transition-property: all;
+
   -o-transition-duration: $duration;
+  -o-transition-property: all;
 
   transition-duration: $duration;
+  transition-property: all;
 }

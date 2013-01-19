@@ -46,8 +46,10 @@ path.cell {
 path.cell:hover {
   stroke: whitesmoke;
   stroke-width: 1px;
+  cursor: pointer;
 }
 
 .voronoi-map-layer {
   position: absolute;
 }
+

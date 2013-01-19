@@ -2,20 +2,57 @@
 @import 'colors';
 
 .location-detail {
+  @include transition-duration(0.2s);
+  padding: 0 6px;
+  position: absolute;
+  left: 150px;
+
+  header:before {
+    content: ' ';
+    position: absolute;
+    left: -12px;
+    top: 0;
+    width: 0;
+    height: 0;
+    display: block;
+    float: left;
+    margin-right: 10px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 12px solid #111;
+  }
+
   header {
-    @include panel;
+    position: relative;
+    float: left;
+    width: 87px;
+    background-color: #111;
+  }
+
+  h2 {
+    font-size: 0.9em;
+    font-weight: normal;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 87px;
+    height: 20px;
+    padding-left: 2px;
   }
 
   .temperature {
     @include transition-duration(0.2s);
-    @include panel;
-    font-size: 6em;
+    float: left;
     text-align: center;
-    color: #000;
+    color: #111;
+    width: 30px;
+    font-weight: bold;
+    border-left: 1px solid #444;
   }
 
   .temperature p {
-    text-shadow: 2px 0 0 #222;
+    font-size: 0.9em;
     margin: 0;
   }
 }

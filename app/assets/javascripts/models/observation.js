@@ -27,7 +27,7 @@ define([
 
       if (nextDay.isToday()) return
 
-      setTimeout(this.load.bind(this, nextDay), 2000)
+      setTimeout(this.load.bind(this, nextDay), 1200)
     }
 
     this.findByDateAndSelect = function (date) {
@@ -43,6 +43,7 @@ define([
     }
 
     this.prototype.select = function () {
+      this.set('selected', true)
       this.emit('selected')
     }
 

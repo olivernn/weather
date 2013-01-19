@@ -48,8 +48,13 @@ define([
       },
 
       renderLocationDetailController: function (location) {
+        var html = $('<article>', {
+          'class': 'location-detail',
+          'data-location-id': location.id()
+        })
+
         var locationDetailController = this.initChildView(LocationDetailController, {
-          elem: $('<div></div>').appendTo(this.elem.find('.location-detail-controller-container')),
+          elem: html.appendTo(this.elem.find('.temp-scale-container')),
           model: location
         })
 

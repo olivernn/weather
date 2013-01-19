@@ -1,0 +1,19 @@
+@import 'colors';
+@import 'mixins';
+
+.temp-scale-container {
+  @include panel;
+  position: relative;
+  padding: 6px 0;
+
+  .temp-scale {
+    margin: 0 auto;
+    border-bottom: 1px solid #444;
+    border-top: 1px solid #222;
+    border-left: 1px solid #222;
+    border-right: 1px solid #444;
+    width: 20px;
+    height: 225px;
+    background: -webkit-linear-gradient(top, #ff8700, #f2dd00 22%, #94bd42 33%, #38c78e 60%, #26d6d9 73%, #2b63d4);
+  }
+}
