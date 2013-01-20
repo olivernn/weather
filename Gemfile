@@ -5,6 +5,7 @@ gem 'pg'
 gem 'requirejs-rails'
 gem 'jbuilder'
 gem 'oj'
+gem 'unicorn'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
