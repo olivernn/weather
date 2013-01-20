@@ -69,5 +69,6 @@ module Weather
     config.requirejs.logical_asset_filter += [/\.mustache$/]
 
     config.logger = Logger.new(STDOUT)
+    config.middleware.insert_before 0, 'Heartbeat'
   end
 end
