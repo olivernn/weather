@@ -5,10 +5,11 @@ define([
   'controllers/locations_controller',
   'controllers/clock_controller',
   'controllers/location_detail_controller',
+  'controllers/temperature_range_controller',
   'requests/geo',
   'models/location',
   'models/clock'
-], function (ctrl, d3, MapController, LocationsController, ClockController, LocationDetailController, geoLocations, Location, clock) {
+], function (ctrl, d3, MapController, LocationsController, ClockController, LocationDetailController, TemperatureRangeController, geoLocations, Location, clock) {
   return ctrl('mainController', function () {
     this.afterInitialize(function () {
       this.svg = d3.select('.map').insert('svg:svg')
@@ -21,6 +22,7 @@ define([
       Location.anyInstance.on('selected', this.renderLocationDetailController, this)
 
       this.initClockController()
+      this.renderTemperatureRangeController()
     })
 
     this.include({
@@ -45,6 +47,19 @@ define([
           elem: this.elem.find('.clock'),
           model: clock
         })
+      },
+
+      renderTemperatureRangeController: function () {
+        var html = $('<article>', {
+          'class': 'temperature-range'
+        })
+
+        var temperatureController = this.initChildView(TemperatureRangeController, {
+          elem: html.appendTo(this.elem.find('.temp-scale-container')),
+          model: clock
+        })
+
+        temperatureController.render()
       },
 
       renderLocationDetailController: function (location) {

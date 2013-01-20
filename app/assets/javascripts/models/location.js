@@ -48,6 +48,13 @@ define(['model', 'requests/all_locations', 'models/observation', 'models/clock']
     this.prototype.deselect = function () {
       this.set('selected', false)
       this.emit('deselected', this)
+    },
+
+    this.prototype.currentTemperature = function () {
+      var observation = this.get('current_observation')
+      if (observation) {
+        return observation.get('temperature')
+      }
     }
   })
 })

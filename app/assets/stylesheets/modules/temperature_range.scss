@@ -1,0 +1,58 @@
+@import 'mixins';
+@import 'colors';
+
+.temperature-range {
+  @include transition-duration(0.2s);
+  padding: 0 6px;
+  position: absolute;
+
+  header:before {
+    content: ' ';
+    position: absolute;
+    right: -22px;
+    top: 0;
+    width: 0;
+    height: 0;
+    display: block;
+    float: left;
+    margin-right: 10px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 12px solid #111;
+  }
+
+  header {
+    position: relative;
+    float: left;
+    width: 87px;
+    background-color: #111;
+  }
+
+  h2 {
+    text-transform: capitalize;
+    font-size: 0.9em;
+    font-weight: normal;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 87px;
+    height: 20px;
+    padding-left: 6px;
+  }
+
+  .temperature {
+    @include transition-duration(0.2s);
+    float: left;
+    text-align: center;
+    color: #111;
+    width: 30px;
+    font-weight: bold;
+    border-left: 1px solid #444;
+  }
+
+  .temperature p {
+    font-size: 0.9em;
+    margin: 0;
+  }
+}

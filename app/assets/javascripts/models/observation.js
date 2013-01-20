@@ -30,9 +30,25 @@ define([
       setTimeout(this.load.bind(this, nextDay), 1200)
     }
 
+    this.findByDate = function (date, fn) {
+      this.collection.forEach(function (observation, idx, arr) {
+        if (observation.isForDate(date)) fn(observation, idx, arr)
+      })
+    }
+
+    this.averageForDate = function (date) {
+      var arr = []
+
+      this.findByDate(date, function (observation) {
+        arr.push(observation.get('temperature'))
+      })
+
+      return arr.reduce(function (total, n) { return total + n }) / arr.length
+    }
+
     this.findByDateAndSelect = function (date) {
-      this.collection.forEach(function (observation) {
-        if (observation.isForDate(date)) observation.select()
+      this.findByDate(date, function (observation) {
+        observation.select()
       })
     }
 
