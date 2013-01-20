@@ -1,23 +1,16 @@
 <article class="left-bar">
-  <div class="clock">
-    <article class="controls">
-      <a class="start">Start</a>
-      <a class="stop">Stop</a>
-    </article>
+  <article class="datetime">
+    <section class="date">
+      <span data-date-section="year"></span>
+      <span data-date-section="month"></span>
+      <span data-date-section="day"></span>
+    </section>
 
-    <article class="datetime">
-      <section class="date">
-        <span data-date-section="year"></span>
-        <span data-date-section="month"></span>
-        <span data-date-section="day"></span>
-      </section>
-
-      <section class="time">
-        <span data-date-section="hours"></span>
-        <span>00</span>
-      </section>
-    </article>
-  </div>
+    <section class="time">
+      <span data-date-section="hours"></span>
+      <span>00</span>
+    </section>
+  </article>
 
   <div class="timeline-container">
     <div class="frame">
@@ -25,6 +18,13 @@
       <div class="played"></div>
     </div>
   </div>
+
+  <ul class="controls is-stopped">
+    <li class="prev"><i class="icon-step-backward"></i>Prev</li>
+    <li class="play"><i class="icon-play"></i>Play</li>
+    <li class="pause"><i class="icon-pause"></i>Pause</li>
+    <li class="next"><i class="icon-step-forward"></i>Next</li>
+  </ul>
 
   <div class="temp-scale-container">
     <div class="temp-scale"></div>

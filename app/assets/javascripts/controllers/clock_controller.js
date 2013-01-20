@@ -1,14 +1,14 @@
-define(['ctrl', 'display_date_time'], function (ctrl) {
+define(['ctrl'], function (ctrl) {
   return ctrl('clockController', function () {
     this
-      .domEvent('click', '.start', '!startClock')
-      .domEvent('click', '.stop', '!stopClock')
-      .domEvent('change', '.tick-rate', '!setTickRate')
+      .domEvent('click', '.prev', '!prevDay')
+      .domEvent('click', '.play', '!startClock')
+      .domEvent('click', '.pause', '!stopClock')
+      .domEvent('click', '.next', '!nextDay')
 
     this
       .modelEvent('stopped', 'displayStartButton')
       .modelEvent('started', 'displayStopButton')
-      .modelEvent('tick', 'updateClockDisplay')
 
     this.include({
       startClock: function () {
@@ -19,12 +19,12 @@ define(['ctrl', 'display_date_time'], function (ctrl) {
         this.model.stop()
       },
 
-      setTickRate: function () {
-        this.model.setTickRate(this.elem.find('.tick-rate').val())
+      nextDay: function () {
+        this.model.nextDay()
       },
 
-      updateClockDisplay: function (date) {
-        this.elem.find('.datetime').displayDateTime(date)
+      prevDay: function () {
+        this.model.prevDay()
       },
 
       displayStartButton: function () {

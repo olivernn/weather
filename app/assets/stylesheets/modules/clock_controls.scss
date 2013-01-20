@@ -1,0 +1,49 @@
+@import 'mixins';
+
+.controls {
+  @include panel;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &:after {
+    visibility: hidden;
+    display: block;
+    content: '';
+    clear: both;
+    height: 0;
+  }
+
+  &.is-stopped .pause {
+    display: none;
+  }
+
+  &.is-started .play {
+    display: none;
+  }
+
+  li {
+    @include text-shadow;
+    font-size: 0.9em;
+    border-left: 1px solid #444;
+    border-right: 1px solid #222;
+    width: 91px;
+    float: left;
+    margin: 0;
+    padding: 4px 0;
+    text-align: center;
+  }
+
+  li:hover {
+    cursor: pointer;
+    background-color: #303030;
+  }
+
+  li:first-child {
+    border-left: none;
+  }
+
+  li:last-child {
+    border-right: none;
+  }
+}

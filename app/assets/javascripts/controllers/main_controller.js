@@ -4,6 +4,7 @@ define([
   'controllers/map_controller',
   'controllers/locations_controller',
   'controllers/clock_controller',
+  'controllers/clock_display_controller',
   'controllers/location_detail_controller',
   'controllers/temperature_range_controller',
   'controllers/timeline_controller',
@@ -11,7 +12,7 @@ define([
   'models/location',
   'models/observation',
   'models/clock'
-], function (ctrl, d3, MapController, LocationsController, ClockController, LocationDetailController, TemperatureRangeController, TimelineController, geoLocations, Location, Observation, clock) {
+], function (ctrl, d3, MapController, LocationsController, ClockController, ClockDisplayController, LocationDetailController, TemperatureRangeController, TimelineController, geoLocations, Location, Observation, clock) {
   return ctrl('mainController', function () {
     this.afterInitialize(function () {
       this.svg = d3.select('.map').insert('svg:svg')
@@ -24,6 +25,7 @@ define([
       Location.anyInstance.on('selected', this.renderLocationDetailController, this)
 
       this.initClockController()
+      this.initClockDisplayController()
       this.initTimelineController()
       this.renderTemperatureRangeController()
     })
@@ -45,9 +47,16 @@ define([
         })
       },
 
+      initClockDisplayController: function () {
+        this.initChildView(ClockDisplayController, {
+          elem: this.elem.find('.datetime'),
+          model: clock
+        })
+      },
+
       initClockController: function () {
         this.initChildView(ClockController, {
-          elem: this.elem.find('.clock'),
+          elem: this.elem.find('.controls'),
           model: clock
         })
       },

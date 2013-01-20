@@ -11,6 +11,10 @@
   border-left: 1px solid #222;
 }
 
+@mixin text-shadow {
+  text-shadow: 2px 0 0 #222;
+}
+
 @mixin transition-duration($duration) {
   -webkit-transition-duration: $duration;
   -webkit-transition-property: all;

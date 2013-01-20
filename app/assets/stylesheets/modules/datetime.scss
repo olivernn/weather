@@ -6,7 +6,7 @@
     font-size: 1.8em;
 
     span {
-      text-shadow: 2px 0 0 #222;
+      @include text-shadow;
       display: inline-block;
       padding: 0 6px;
     }
@@ -20,7 +20,7 @@
     }
 
     span {
-      text-shadow: 2px 0 0 #222;
+      @include text-shadow;
       display: inline-block;
       width: 88px;
       padding: 0 10px;
