@@ -1,0 +1,28 @@
+@import 'mixins';
+
+.timeline-container {
+  @include panel;
+  @include transition-duration(0.2s);
+  padding: 0;
+  height: 8px;
+
+  .frame {
+    position: relative
+  }
+
+  .loaded {
+    background-color: #666;
+  }
+  
+  .played {
+    background-color: #ccc;
+  }
+
+  .played, .loaded {
+    @include transition-duration(0.2s);
+    height: 8px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

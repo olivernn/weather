@@ -12,6 +12,11 @@ define([
       self.collection.add(new self (attrs))
     }
 
+    var dateAsPercentage = function (date) {
+      var daysAgo = (new Date).daysBetween(date)
+      return (15 - daysAgo) / 14
+    }
+
     this.load = function (date) {
       var date = date || (14).daysAgo()
 
@@ -19,6 +24,7 @@ define([
         .then(function (data) {
           data.forEachWait(initAndAddToCollection)
         })
+        .then(this.emit.bind(this, 'loaded', dateAsPercentage(date)))
         .then(this.loadNext.bind(this, date))
     }
 
@@ -53,6 +59,13 @@ define([
     }
 
     clock.on('tick', this.findByDateAndSelect, this)
+
+    clock.on('tick', function (date) {
+      var hoursAgo = (new Date).hoursBetween(date),
+          hoursAsPercentage = (360 - hoursAgo) / 336
+
+      this.emit('played', hoursAsPercentage)
+    }, this)
 
     this.prototype.initialize = function () {
       this.set('date', new Date(Date.parse(this.get('date'))))
