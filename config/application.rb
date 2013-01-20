@@ -66,6 +66,7 @@ module Weather
     config.assets.version = '1.0'
 
     config.assets.paths << Rails.root.join('app', 'assets', 'templates')
+    config.assets.paths << Rails.root.join('app', 'assets', 'data')
     config.requirejs.logical_asset_filter += [/\.mustache$/]
 
     config.logger = Logger.new(STDOUT)

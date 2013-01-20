@@ -8,18 +8,18 @@ define([
   'controllers/location_detail_controller',
   'controllers/temperature_range_controller',
   'controllers/timeline_controller',
-  'requests/geo',
+  'json!uk_geo.json',
   'models/location',
   'models/observation',
   'models/clock'
-], function (ctrl, d3, MapController, LocationsController, ClockController, ClockDisplayController, LocationDetailController, TemperatureRangeController, TimelineController, geoLocations, Location, Observation, clock) {
+], function (ctrl, d3, MapController, LocationsController, ClockController, ClockDisplayController, LocationDetailController, TemperatureRangeController, TimelineController, ukGeo, Location, Observation, clock) {
   return ctrl('mainController', function () {
     this.afterInitialize(function () {
       this.svg = d3.select('.map').insert('svg:svg')
                    .attr('width', 800)
                    .attr('height', 600)
 
-      geoLocations().then(this.initMapController.bind(this))
+      this.initMapController(ukGeo)
       Location.load().then(this.initLocationsController.bind(this))
 
       Location.anyInstance.on('selected', this.renderLocationDetailController, this)
