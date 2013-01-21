@@ -64,10 +64,13 @@ define(['model', 'core_extensions/number'], function (model) {
     }
 
     this.prototype.setDate = function (date) {
+      if (date > currentDate() || date < (14).daysAgo()) return
+
       this.set('date', date)
       this.emit('tick', date)
       if (date >= currentDate()) this.stop()
     }
+
   })
 
   return new Clock
