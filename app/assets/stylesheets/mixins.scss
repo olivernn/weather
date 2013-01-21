@@ -11,8 +11,8 @@
   border-left: 1px solid #222;
 }
 
-@mixin text-shadow {
-  text-shadow: 2px 0 0 #222;
+@mixin text-shadow($size: 2px) {
+  text-shadow: $size 0 0 #111;
 }
 
 @mixin transition-duration($duration) {
@@ -22,8 +22,8 @@
   -moz-transition-duration: $duration;
   -moz-transition-property: all;
 
-  -ie-transition-duration: $duration;
-  -ie-transition-property: all;
+  -ms-transition-duration: $duration;
+  -ms-transition-property: all;
 
   -o-transition-duration: $duration;
   -o-transition-property: all;

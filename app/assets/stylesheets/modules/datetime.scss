@@ -3,31 +3,17 @@
 
 .datetime {
   .date {
+    @include text-shadow;
     font-size: 1.8em;
-
-    span {
-      @include text-shadow;
-      display: inline-block;
-      padding: 0 6px;
-    }
   }
 
   .time {
-    font-size: 5em;
-
-    span:first-child:after {
-      content: ':';
-    }
-
-    span {
-      @include text-shadow;
-      display: inline-block;
-      width: 88px;
-      padding: 0 10px;
-    }
+    @include text-shadow(3px);
+    font-size: 6em;
   }
 
   .date, .time {
     @include panel;
+    text-align: center;
   }
 }
