@@ -27,18 +27,24 @@ define(['model', 'core_extensions/number'], function (model) {
       this.set('date', date)
     }
 
+    this.prototype.tick = function () {
+      if (!this.get('running')) return
+
+      this.incrementDate()
+      setTimeout(this.tick.bind(this), this.get('tick_rate'))
+    }
+
     this.prototype.start = function () {
       if (this.get('running')) return
 
-      this.interval = setInterval(this.incrementDate.bind(this), this.get('tick_rate'))
       this.set('running', true)
+      this.tick()
       this.emit('started')
     }
 
     this.prototype.stop = function () {
       if (!this.get('running')) return
 
-      clearInterval(this.interval)
       this.set('running', false)
       this.emit('stopped')
     }
