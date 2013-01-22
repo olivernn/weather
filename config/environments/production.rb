@@ -67,5 +67,5 @@ Weather::Application.configure do
 
   # Serve the static assets via rails so it can be cached
   config.serve_static_assets = true
-  config.static_cache_control = 'public, max-age=3600'
+  config.static_cache_control = 'public, max-age=86400'
 end
