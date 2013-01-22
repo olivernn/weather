@@ -72,5 +72,7 @@ module Weather
 
     config.logger = Logger.new(STDOUT)
     config.middleware.insert_before 0, 'Heartbeat'
+
+    config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
   end
 end
