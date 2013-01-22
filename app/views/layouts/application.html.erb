@@ -5,7 +5,7 @@
   <script type="text/javascript" src="//use.typekit.net/twi5hjc.js"></script>
   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= requirejs_include_tag "application" %>
+  <%= requirejs_include_tag "application" { |c| { 'main' => 'application' } } %>
   <%= csrf_meta_tags %>
 </head>
 <body>
