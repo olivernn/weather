@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121209002004) do
+ActiveRecord::Schema.define(:version => 20130122203446) do
 
   create_table "locations", :force => true do |t|
     t.integer  "ref"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(:version => 20121209002004) do
     t.datetime "updated_at",     :null => false
   end
 
+  add_index "observations", ["date"], :name => "index_observations_on_date"
   add_index "observations", ["location_id", "date"], :name => "index_observations_on_location_id_and_date"
 
 end
