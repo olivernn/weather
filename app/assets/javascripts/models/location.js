@@ -1,4 +1,9 @@
-define(['model', 'requests/all_locations', 'models/observation', 'models/clock'], function (model, allLocations, Observation, clock) {
+define([
+  'model',
+  'requests/all_locations',
+  'models/observation',
+  'models/clock'
+], function (model, allLocations, Observation, clock) {
 
   var observationIndex = new model.Indexer(Observation.collection, 'location_id')
 

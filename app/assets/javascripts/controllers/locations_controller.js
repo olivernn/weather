@@ -1,4 +1,9 @@
-define(['ctrl', 'd3', 'projection', 'controllers/location_controller'], function (ctrl, d3, projection, LocationController) {
+define([
+  'ctrl',
+  'd3',
+  'projection',
+  'controllers/location_controller'
+], function (ctrl, d3, projection, LocationController) {
   return ctrl('locationsController', function () {
     this.afterInitialize(function () {
       this.cells = this.options.svg
