@@ -8,6 +8,8 @@ define([
   return model('observations', function () {
     var self = this
 
+    var dateIndex = new model.Indexer(this.collection, 'date')
+
     var initAndAddToCollection = function (attrs) {
       self.collection.add(new self (attrs))
     }
@@ -36,24 +38,20 @@ define([
       setTimeout(this.load.bind(this, nextDay), 1200)
     }
 
-    this.findByDate = function (date, fn) {
-      this.collection.forEach(function (observation, idx, arr) {
-        if (observation.isForDate(date)) fn(observation, idx, arr)
-      })
+    this.findByDate = function (date) {
+      return dateIndex.get(date)
     }
 
     this.averageForDate = function (date) {
-      var arr = []
-
-      this.findByDate(date, function (observation) {
-        arr.push(observation.get('temperature'))
+      var temperatures = this.findByDate(date).map(function (observation) {
+        return observation.get('temperature')
       })
 
-      return arr.reduce(function (total, n) { return total + n }) / arr.length
+      return temperatures.reduce(function (total, n) { return total + n }, 0) / temperatures.length
     }
 
     this.findByDateAndSelect = function (date) {
-      this.findByDate(date, function (observation) {
+      this.findByDate(date).forEach(function (observation) {
         observation.select()
       })
     }
