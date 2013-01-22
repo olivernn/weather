@@ -20,7 +20,7 @@ define([
     }
 
     this.load = function (date) {
-      var date = date || (14).daysAgo()
+      var date = (date || (14).daysAgo()).beginningOfDay()
 
       return observationsForDate(date)
         .then(function (data) {

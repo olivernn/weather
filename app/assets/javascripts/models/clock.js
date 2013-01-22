@@ -2,14 +2,7 @@ define(['model', 'core_extensions/number'], function (model) {
   var Clock = model('clock', function () {
 
     var currentDate = function () {
-      var date = new Date
-
-      date.setHours(0)
-      date.setMinutes(0)
-      date.setSeconds(0)
-      date.setMilliseconds(0)
-
-      return date
+      return (new Date).beginningOfDay()
     }
 
     this.prototype.initialize = function () {
@@ -70,7 +63,7 @@ define(['model', 'core_extensions/number'], function (model) {
     }
 
     this.prototype.setDate = function (date) {
-      if (date > currentDate() || date < (14).daysAgo()) return
+      if (date > currentDate() || date < (14).daysAgo().beginningOfDay()) return
 
       this.set('date', date)
       this.emit('tick', date)
