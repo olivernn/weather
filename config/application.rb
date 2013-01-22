@@ -68,6 +68,7 @@ module Weather
     config.assets.paths << Rails.root.join('app', 'assets', 'templates')
     config.assets.paths << Rails.root.join('app', 'assets', 'data')
     config.requirejs.logical_asset_filter += [/\.mustache$/]
+    config.requirejs.logical_asset_filter += [/\.json$/]
 
     config.logger = Logger.new(STDOUT)
     config.middleware.insert_before 0, 'Heartbeat'
