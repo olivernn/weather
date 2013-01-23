@@ -5,7 +5,15 @@ define(['ctrl', 'color_scale', 'models/clock'], function (ctrl, colorScale, cloc
 
     this.domEvent('click', 'selectLocation')
 
+    this.afterInitialize(function () {
+      this.addTitle()
+    })
+
     this.include({
+      addTitle: function () {
+        this.elem.append('svg:title').text(this.model.get('name'))
+      },
+
       updateColor: function (_, _, obs) {
         var color = d3.hsl(colorScale(obs.get('temperature')))
 
