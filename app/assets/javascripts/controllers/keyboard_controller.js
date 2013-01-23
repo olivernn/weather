@@ -1,9 +1,17 @@
 define(['ctrl', 'keymaster'], function (ctrl, key) {
   return ctrl('keyboardController', function () {
+
+    var preventingDefault = function (fn, ctx) {
+      return function (e) {
+        fn.call(ctx, e)
+        return false
+      }
+    }
+
     this.afterInitialize(function () {
-      key('space', this.playPause.bind(this))
-      key('left', this.prev.bind(this))
-      key('right', this.next.bind(this))
+      key('space', preventingDefault(this.playPause, this))
+      key('left',  preventingDefault(this.prev, this))
+      key('right', preventingDefault(this.next, this))
     })
 
     this.include({
