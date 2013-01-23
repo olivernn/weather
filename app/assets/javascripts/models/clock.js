@@ -27,6 +27,14 @@ define(['model', 'core_extensions/number'], function (model) {
       setTimeout(this.tick.bind(this), this.get('tick_rate'))
     }
 
+    this.prototype.toggleRunning = function () {
+      if (this.get('running')) {
+        this.stop()
+      } else {
+        this.start()
+      }
+    }
+
     this.prototype.start = function () {
       if (this.get('running')) return
 

@@ -8,11 +8,12 @@ define([
   'controllers/location_detail_controller',
   'controllers/temperature_range_controller',
   'controllers/timeline_controller',
+  'controllers/keyboard_controller',
   'json!uk_geo.json',
   'models/location',
   'models/observation',
   'models/clock'
-], function (ctrl, d3, MapController, LocationsController, ClockController, ClockDisplayController, LocationDetailController, TemperatureRangeController, TimelineController, ukGeo, Location, Observation, clock) {
+], function (ctrl, d3, MapController, LocationsController, ClockController, ClockDisplayController, LocationDetailController, TemperatureRangeController, TimelineController, KeyboardController, ukGeo, Location, Observation, clock) {
   return ctrl('mainController', function () {
     this.afterInitialize(function () {
       this.svg = d3.select('.map').insert('svg:svg')
@@ -27,6 +28,7 @@ define([
       this.initClockController()
       this.initClockDisplayController()
       this.initTimelineController()
+      this.initKeyboardController()
       this.renderTemperatureRangeController()
     })
 
@@ -57,6 +59,12 @@ define([
       initClockController: function () {
         this.initChildView(ClockController, {
           elem: this.elem.find('.controls'),
+          model: clock
+        })
+      },
+
+      initKeyboardController: function () {
+        this.initChildView(KeyboardController, {
           model: clock
         })
       },
