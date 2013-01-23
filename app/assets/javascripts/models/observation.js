@@ -43,11 +43,11 @@ define([
     }
 
     this.averageForDate = function (date) {
-      var temperatures = this.findByDate(date).map(function (observation) {
-        return observation.get('temperature')
-      })
+      var temperatureSum = this.findByDate(date)
+        .map(function (observation) { return observation.get('temperature') })
+        .reduce(function (total, n) { return total + n }, 0)
 
-      return temperatures.reduce(function (total, n) { return total + n }, 0) / temperatures.length
+      return temperatureSum /  this.findByDate(date).length
     }
 
     this.findByDateAndSelect = function (date) {
