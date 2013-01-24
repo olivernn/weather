@@ -81,6 +81,8 @@ define([
       },
 
       initURLController: function () {
+        if (!history.replaceState) return
+
         this.initChildView(URLController, {
           model: clock
         })
