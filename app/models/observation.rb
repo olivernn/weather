@@ -7,4 +7,9 @@ class Observation < ActiveRecord::Base
   scope :on_date, lambda { |date|
     where('date >= ? AND date < ?', date.beginning_of_day, date.end_of_day)
   }
+
+  def self.earliest_date
+    minimum_date = select('MIN(date) AS minimum_date').first.try(:minimum_date)
+    minimum_date.present? ? Time.parse(minimum_date) : Time.now
+  end
 end

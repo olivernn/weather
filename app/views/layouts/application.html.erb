@@ -9,6 +9,8 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_application_include_tag %>
   <%= csrf_meta_tags %>
+
+  <%= yield :head %>
 </head>
 <body>
   <div class="wrapper">

@@ -1,23 +1,15 @@
-define(['model', 'core_extensions/number'], function (model) {
-  var Clock = model('clock', function () {
+define([
+  'model',
+  'env',
+  'core_extensions/number'
+], function (model, ENV) {
 
-    var currentDate = function () {
-      return (new Date).beginningOfDay()
-    }
+  var Clock = model('clock', function () {
 
     this.prototype.initialize = function () {
       this.set('tick_rate', 200)
       this.set('interval', null)
       this.set('running', false)
-
-      var date = (14).daysAgo()
-
-      date.setHours(0)
-      date.setMinutes(0)
-      date.setSeconds(0)
-      date.setMilliseconds(0)
-
-      this.set('date', date)
     }
 
     this.prototype.tick = function () {
@@ -71,15 +63,18 @@ define(['model', 'core_extensions/number'], function (model) {
     }
 
     this.prototype.setDate = function (date) {
-      if (date > currentDate() || date < (14).daysAgo().beginningOfDay()) return
+      if (date > ENV.endDate || date < ENV.startDate) return
 
       this.set('date', date)
       this.emit('tick', date)
-      if (date >= currentDate()) this.stop()
+
+      if (date >= ENV.endDate) this.stop()
     }
 
   })
 
-  return new Clock
+  return new Clock ({
+    date: new Date(ENV.startDate.getTime())
+  })
 })
 

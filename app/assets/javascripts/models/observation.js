@@ -2,9 +2,10 @@ define([
   'model',
   'requests/observations_for_date',
   'models/clock',
+  'env',
   'core_extensions/date',
   'core_extensions/number'
-], function (model, observationsForDate, clock) {
+], function (model, observationsForDate, clock, ENV) {
   return model('observations', function () {
     var self = this
 
@@ -15,12 +16,12 @@ define([
     }
 
     var dateAsPercentage = function (date) {
-      var daysAgo = (new Date).daysBetween(date)
-      return (15 - daysAgo) / 14
+      var daysAgo = ENV.endDate.daysBetween(date)
+      return ((ENV.duration + 0) - daysAgo) / ENV.duration
     }
 
     this.load = function (date) {
-      var date = (date || (14).daysAgo()).beginningOfDay()
+      var date = (date || ENV.startDate).beginningOfDay()
 
       return observationsForDate(date)
         .then(function (data) {
@@ -59,8 +60,9 @@ define([
     clock.on('tick', this.findByDateAndSelect, this)
 
     clock.on('tick', function (date) {
-      var hoursAgo = (new Date).hoursBetween(date),
-          hoursAsPercentage = (360 - hoursAgo) / 336
+      var hoursTicked = ENV.startDate.hoursBetween(date),
+          totalHours = ENV.startDate.hoursBetween(ENV.endDate),
+          hoursAsPercentage = hoursTicked / totalHours
 
       this.emit('played', hoursAsPercentage)
     }, this)

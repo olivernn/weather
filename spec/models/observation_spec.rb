@@ -12,4 +12,13 @@ describe Observation do
     it { should include(observation_2) }
     it { should_not include(observation_3) }
   end
+
+  describe ".earliest_date" do
+    let!(:observation_1) { Observation.create(date: Date.new(2012, 12, 11)) }
+    let!(:observation_2) { Observation.create(date: Date.new(2012, 12, 12)) }
+
+    subject { Observation.earliest_date }
+
+    it { should == observation_1.date }
+  end
 end

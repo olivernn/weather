@@ -70,7 +70,6 @@ module Weather
     config.requirejs.logical_asset_filter += [/\.mustache$/]
     config.requirejs.logical_asset_filter += [/\.json$/]
 
-    config.logger = Logger.new(STDOUT)
     config.middleware.insert_before 0, 'Heartbeat'
 
     config.middleware.insert_before ActionDispatch::Static, Rack::Deflater

@@ -10,11 +10,12 @@ define([
   'controllers/timeline_controller',
   'controllers/keyboard_controller',
   'controllers/favicon_controller',
+  'controllers/url_controller',
   'json!uk_geo.json',
   'models/location',
   'models/observation',
   'models/clock'
-], function (ctrl, d3, MapController, LocationsController, ClockController, ClockDisplayController, LocationDetailController, TemperatureRangeController, TimelineController, KeyboardController, FaviconController, ukGeo, Location, Observation, clock) {
+], function (ctrl, d3, MapController, LocationsController, ClockController, ClockDisplayController, LocationDetailController, TemperatureRangeController, TimelineController, KeyboardController, FaviconController, URLController, ukGeo, Location, Observation, clock) {
   return ctrl('mainController', function () {
     this.afterInitialize(function () {
       this.svg = d3.select('.map').insert('svg:svg')
@@ -31,6 +32,8 @@ define([
       this.initTimelineController()
       this.initKeyboardController()
       this.initFaviconController()
+      this.initURLController()
+
       this.renderTemperatureRangeController()
     })
 
@@ -73,6 +76,12 @@ define([
 
       initFaviconController: function () {
         this.initChildView(FaviconController, {
+          model: clock
+        })
+      },
+
+      initURLController: function () {
+        this.initChildView(URLController, {
           model: clock
         })
       },

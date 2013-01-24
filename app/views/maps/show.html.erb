@@ -1,13 +1,23 @@
+<% content_for :head do %>
+  <script>
+    window.ENV = {
+      "startDate": <%= raw @date_time_range.start.to_json %>,
+      "endDate": <%= raw @date_time_range.end.to_json %>,
+      "duration": <%= raw @date_time_range.duration.to_json %>
+    }
+  </script>
+<% end %>
+
 <article class="left-bar">
   <article class="datetime">
     <section class="date">
-      <span data-date-section="day"><%= @start_date.day %></span>
-      <span data-date-section="month"><%= @start_date.strftime('%b') %></span>
-      <span data-date-section="year"><%= @start_date.year %></span>
+      <span data-date-section="day"><%= start_day @date_time_range %></span>
+      <span data-date-section="month"><%= start_month @date_time_range %></span>
+      <span data-date-section="year"><%= start_year @date_time_range %></span>
     </section>
 
     <section class="time">
-      <span data-date-section="hours">00</span>
+      <span data-date-section="hours"><%= start_hour @date_time_range %></span>
       :
       <span>00</span>
     </section>
