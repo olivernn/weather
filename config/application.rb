@@ -67,6 +67,7 @@ module Weather
 
     config.assets.paths << Rails.root.join('app', 'assets', 'templates')
     config.assets.paths << Rails.root.join('app', 'assets', 'data')
+    config.assets.initialize_on_precompile = false
     config.requirejs.logical_asset_filter += [/\.mustache$/]
     config.requirejs.logical_asset_filter += [/\.json$/]
 
