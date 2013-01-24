@@ -26,6 +26,6 @@ class DateTimeRange
   private
 
   def start_within_last_fortnight?
-    DateTime.now.at_beginning_of_day - start <= 14.days
+    14.days.ago.at_beginning_of_day <= start
   end
 end

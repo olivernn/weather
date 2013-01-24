@@ -32,9 +32,9 @@ define([
     }
 
     this.loadNext = function (date) {
-      var nextDay = date.nextDay()
+      var nextDay = date.nextDay().beginningOfDay()
 
-      if (nextDay.isToday()) return
+      if (nextDay >= ENV.endDate) return
 
       setTimeout(this.load.bind(this, nextDay), 1200)
     }
