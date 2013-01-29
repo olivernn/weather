@@ -1,0 +1,12 @@
+@import 'mixins';
+
+.about {
+  @include panel;
+  border-bottom: none;
+  text-align: center;
+  font-size: 0.9em;
+
+  a {
+    color: white;
+  }
+}
