@@ -2,8 +2,8 @@ class StartDateConstraint
 
   attr_reader :earliest_date
 
-  def initialize(earliest_date)
-    @earliest_date = earliest_date
+  def initialize
+    @earliest_date = Observation.earliest_date rescue Date.today
   end
 
   def matches?(request)
