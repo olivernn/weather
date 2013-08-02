@@ -30,8 +30,13 @@ describe DateTimeRange do
 
     context "start is more than or exactly 2 weeks ago" do
       let(:start_date) { 14.days.ago.beginning_of_day }
+      let(:expected) { start_date + 14.days }
 
-      it { should == start_date + 14.days }
+      its(:year) { should == expected.year }
+      its(:month) { should == expected.month }
+      its(:day) { should == expected.day }
+      its(:hour) { should == expected.hour }
+      its(:minute) { should == 0 }
     end
 
     context "start is less than 2 weeks ago" do
@@ -64,6 +69,6 @@ describe DateTimeRange do
     let(:date_time_range) { DateTimeRange.ending_now }
     subject { date_time_range.duration }
 
-    it { should == 14 }
+    it { should == 13 }
   end
 end
