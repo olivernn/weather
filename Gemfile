@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.11'
+gem 'rails', '3.2.14'
 gem 'pg'
 gem 'requirejs-rails'
 gem 'jbuilder'
@@ -25,5 +25,4 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'debugger'
 end
