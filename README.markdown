@@ -15,6 +15,6 @@ This is a simple Rails app and the following steps should get the app running lo
 
 Data cab be collected by using the `rake met_office_import` command.
 
-## Met Office Api Key
+## Met Office API Key
 
 To collect data from the Met Office API you need to [sign up for an API key](http://www.metoffice.gov.uk/datapoint/support/API) and place it in the `MET_OFFICE_API_KEY` environment variable.
