@@ -2,6 +2,8 @@ define(['ctrl', 'color_scale', 'models/clock'], function (ctrl, colorScale, cloc
   return ctrl('locationController', function () {
 
     this.modelEvent('change:current_observation', 'updateColor')
+    this.modelEvent('selected', 'addStroke')
+    this.modelEvent('deselected', 'removeStroke')
 
     this.domEvent('click', 'selectLocation')
 
@@ -24,7 +26,18 @@ define(['ctrl', 'color_scale', 'models/clock'], function (ctrl, colorScale, cloc
 
       selectLocation: function () {
         this.model.select()
+      },
+
+      addStroke: function () {
+        this.elem.select('path')
+          .style({ 'stroke': '#ffffff', 'stroke-width': '1px' })
+      },
+
+      removeStroke: function () {
+        this.elem.select('path')
+          .style({ 'stroke': null, 'stroke-width': null })
       }
+
     })
   })
 })
